@@ -12,5 +12,6 @@ namespace InfoSellers.Model.Repository
         Task<long> Add(TEntity b);
         Task<long> Update(U id, TEntity b);
         Task<long> Delete(U id);
+        Task<TEntity> GetById(int id);
     }
 }

@@ -36,6 +36,12 @@ namespace InfoSellers.Model.Repository
             return res;
         }
 
+        public async Task<BikeSeller> GetById(int id)
+        {
+            var bikeSeller = await _context.BikeSeller.FindAsync(id);
+            return bikeSeller;
+        }
+
         public IQueryable<BikeSeller> GetAll()
         {
             var bikeSeller = _context.BikeSeller.Include(r => r.Role).AsNoTracking();

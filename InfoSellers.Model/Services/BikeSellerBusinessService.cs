@@ -10,25 +10,25 @@ namespace InfoSellers.Model.Services
 {
     public class BikeSellerBusinessService : IBusinessService<BikeSeller, int>
     {
-        private readonly IDataRepository<BikeSeller, int> dataRepository;
-        public BikeSellerBusinessService(IDataRepository<BikeSeller, int> dataRepository)
+        private readonly IDataRepository<BikeSeller, int> _dataRepository;
+        public BikeSellerBusinessService(IDataRepository<BikeSeller, int> _dataRepository)
         {
-            this.dataRepository = dataRepository;
+            this._dataRepository = _dataRepository ?? throw new ArgumentNullException(nameof(_dataRepository));
         }
 
         public Task<long> Add(BikeSeller bikeSeller)
         {
-            return dataRepository.Add(bikeSeller);
+            return _dataRepository.Add(bikeSeller);
         }
 
         public Task<long> Delete(int id)
         {
-            return dataRepository.Delete(id);
+            return _dataRepository.Delete(id);
         }
 
         public IEnumerable<BikeSeller> GetAll()
         {
-            return dataRepository.GetAll();
+            return _dataRepository.GetAll();
         }
 
         public Task<long> Update(int id, BikeSeller bikeSeller)
@@ -38,7 +38,17 @@ namespace InfoSellers.Model.Services
                 bikeSeller.CalculateNewComission();
             }
             
-            return dataRepository.Update(id, bikeSeller);
+            return _dataRepository.Update(id, bikeSeller);
         }
+
+        public async Task<BikeSeller> GetById(int id)
+        {
+            var bikeSeller = await _dataRepository.GetById(id);
+
+            return bikeSeller;
+        }
+
+
+
     }
 }
