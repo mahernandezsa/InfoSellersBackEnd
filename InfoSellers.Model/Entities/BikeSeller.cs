@@ -51,6 +51,12 @@ namespace InfoSellers.Model.Entities
 
 
 
+        public void CalculateNewComission()
+        {
+            Role.ComissionValue += -(Role.ComissionValue * (PenaltyPercentage / 100));
+        }
 
     }
+
 }
+

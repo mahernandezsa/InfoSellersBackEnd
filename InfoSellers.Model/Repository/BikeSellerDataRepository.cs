@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace InfoSellers.Model.Repository
 {
-    public class DataRepositoryBikeSeller : IDataRepository<BikeSeller, int>
+    public class BikeSellerDataRepository : IDataRepository<BikeSeller, int>
     {
         private readonly InfoSellersContext _context;
-        public DataRepositoryBikeSeller(InfoSellersContext context)
+        public BikeSellerDataRepository(InfoSellersContext context)
         {
             _context = context;
         }
@@ -46,6 +46,7 @@ namespace InfoSellers.Model.Repository
         {
             int res = 0;
             _context.Entry(bikeSeller).State = EntityState.Modified;
+            _context.Entry(bikeSeller).Property(p => p.PenaltyPercentage).IsModified = false;
             try
             {
                 res = await _context.SaveChangesAsync();
