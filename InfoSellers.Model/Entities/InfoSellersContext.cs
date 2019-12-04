@@ -27,12 +27,11 @@ namespace InfoSellers.Model.Entities
 
             modelBuilder.Entity<BikeSeller>()
                 .Property(b => b.Status)
-                .HasConversion<bool>();
+                .HasConversion<int>();
 
             modelBuilder.Entity<Role>()
                 .Property(b => b.CommissionType)
-                .HasConversion<string>();
-
+                .HasConversion<string>();            
         }
     }
 }
