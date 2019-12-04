@@ -29,7 +29,7 @@ namespace InfoSellers.Web.Controllers
 
         // GET: api/BikeSeller/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<BikeSeller>> GetBikeSellers(int id)
+        public async Task<ActionResult<BikeSeller>> GetBikeSeller(int id)
         {
             var bikeSeller = await _bikeSellerBusinessService.GetById(id);
 
@@ -44,7 +44,7 @@ namespace InfoSellers.Web.Controllers
 
         // PUT: api/BikeSeller/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBikeSellers(int id, BikeSeller bikeSeller)
+        public async Task<IActionResult> PutBikeSeller(int id, BikeSeller bikeSeller)
         {
             if (id != bikeSeller.Id)
             {
@@ -55,9 +55,9 @@ namespace InfoSellers.Web.Controllers
             return NoContent();
         }
 
-        // POST: api/Employees
+        // POST: api/BikeSeller
         [HttpPost]
-        public async Task<ActionResult<BikeSeller>> PostBikeSellers(BikeSeller bikeSeller)
+        public async Task<ActionResult<BikeSeller>> PostBikeSeller(BikeSeller bikeSeller)
         {
             if (!ModelState.IsValid)
             {
@@ -68,9 +68,9 @@ namespace InfoSellers.Web.Controllers
             return CreatedAtAction("GetBikeSellers", new { id = bikeSeller.Id }, bikeSeller);
         }
 
-        // DELETE: api/Employees/5
+        // DELETE: api/BikeSeller/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBikeSellers(int id)
+        public async Task<IActionResult> DeleteBikeSeller(int id)
         {
             var res = await _bikeSellerBusinessService.Delete(id);
             return NoContent();
