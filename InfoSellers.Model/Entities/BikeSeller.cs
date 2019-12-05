@@ -33,7 +33,7 @@ namespace InfoSellers.Model.Entities
         /// <summary>
         /// Gets or sets the phone of a BikeSeller.
         /// </summary>
-        public int Phone { get; set; }
+        public long Phone { get; set; }
         /// <summary>
         /// 
         /// </summary>

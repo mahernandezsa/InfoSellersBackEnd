@@ -20,10 +20,6 @@ namespace InfoSellers.Model.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Role>()
-                .HasOne<BikeSeller>(r => r.BikeSeller)
-                .WithOne(b => b.Role)
-                .HasForeignKey<BikeSeller>(b => b.RoleId);
 
             modelBuilder.Entity<BikeSeller>()
                 .Property(b => b.Status)
