@@ -32,10 +32,12 @@ namespace InfoSellers.Web
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<InfoSellersContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            
             services.AddScoped<IDataRepository<BikeSeller, int>, BikeSellerDataRepository>();
             services.AddScoped<IBusinessService<BikeSeller, int>, BikeSellerBusinessService>();
 
-
+            services.AddScoped<IDataRepository<Role, int>, RoleDataRepository>();
+            services.AddScoped<IBusinessService<Role, int>,RoleBusinessService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -35,6 +35,10 @@ namespace InfoSellers.Model.Entities
         /// </summary>
         public int Phone { get; set; }
         /// <summary>
+        /// 
+        /// </summary>
+        public int RoleId { get; set; }
+        /// <summary>
         /// Gets or sets the Role of a BikeSeller.
         /// </summary>
         public Role Role { get; set; }

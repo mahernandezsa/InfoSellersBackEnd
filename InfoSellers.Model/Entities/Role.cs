@@ -22,11 +22,7 @@ namespace InfoSellers.Model.Entities
         /// <summary>
         /// 
         /// </summary>
-        public double ComissionValue { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int RoleOfBikeSellerId { get; set; }
+        public double ComissionValue { get; set; }       
         /// <summary>
         /// 
         /// </summary>

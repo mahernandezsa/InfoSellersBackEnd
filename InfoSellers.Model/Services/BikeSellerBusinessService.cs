@@ -16,14 +16,14 @@ namespace InfoSellers.Model.Services
             this._dataRepository = _dataRepository ?? throw new ArgumentNullException(nameof(_dataRepository));
         }
 
-        public Task<long> Add(BikeSeller bikeSeller)
+        public async Task<long> Add(BikeSeller bikeSeller)
         {
-            return _dataRepository.Add(bikeSeller);
+            return await _dataRepository.Add(bikeSeller);
         }
 
-        public Task<long> Delete(int id)
+        public async Task<long> Delete(int id)
         {
-            return _dataRepository.Delete(id);
+            return await _dataRepository.Delete(id);
         }
 
         public IEnumerable<BikeSeller> GetAll()
@@ -31,14 +31,14 @@ namespace InfoSellers.Model.Services
             return _dataRepository.GetAll();
         }
 
-        public Task<long> Update(int id, BikeSeller bikeSeller)
+        public async Task<long> Update(int id, BikeSeller bikeSeller)
         {
             if (bikeSeller.Status.Equals(BikeSellerStatusType.deactivated))
             {
                 bikeSeller.CalculateNewComission();
             }
             
-            return _dataRepository.Update(id, bikeSeller);
+            return await _dataRepository.Update(id, bikeSeller);
         }
 
         public async Task<BikeSeller> GetById(int id)
