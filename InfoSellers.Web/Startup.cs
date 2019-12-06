@@ -19,6 +19,9 @@ namespace InfoSellers.Web
 {
     public class Startup
     {
+
+        readonly string MyAllowSpecificOrigins = "AllowOrigin";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -38,6 +41,15 @@ namespace InfoSellers.Web
 
             services.AddScoped<IDataRepository<Role, int>, RoleDataRepository>();
             services.AddScoped<IBusinessService<Role, int>,RoleBusinessService>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +65,8 @@ namespace InfoSellers.Web
                 app.UseHsts();
             }
 
+
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseHttpsRedirection();
             app.UseMvc();
         }
