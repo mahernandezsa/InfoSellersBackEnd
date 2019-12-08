@@ -52,6 +52,7 @@ namespace InfoSellers.Model.Repository
         {
             int res = 0;
             _context.Entry(bikeSeller).State = EntityState.Modified;
+            _context.Entry(bikeSeller.Role).State = EntityState.Modified;
             _context.Entry(bikeSeller).Property(p => p.PenaltyPercentage).IsModified = false;
             try
             {

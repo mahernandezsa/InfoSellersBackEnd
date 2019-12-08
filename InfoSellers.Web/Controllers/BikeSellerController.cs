@@ -46,7 +46,7 @@ namespace InfoSellers.Web.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBikeSeller(int id, BikeSeller bikeSeller)
         {
-            if (id != bikeSeller.Id)
+            if (id != bikeSeller.Id || bikeSeller.Role.Id != bikeSeller.RoleId)
             {
                 return BadRequest();
             }
