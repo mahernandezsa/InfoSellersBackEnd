@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using System.Text.Json.Serialization;
 
 namespace InfoSellers.Web
 {
@@ -31,7 +31,10 @@ namespace InfoSellers.Web
 
             services.AddDbContext<InfoSellersContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
-            
+            services.AddMvc().AddJsonOptions(opts =>
+            {
+                opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
 
             services.AddScoped<IDataRepository<BikeSeller, int>, BikeSellerDataRepository>();
             services.AddScoped<IBusinessService<BikeSeller, int>, BikeSellerBusinessService>();
@@ -51,26 +54,14 @@ namespace InfoSellers.Web
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
-            //else
-            //{
-            //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            //    app.UseHsts();
-            //}
-
-
-            //app.UseCors(MyAllowSpecificOrigins);
-            //app.UseHttpsRedirection();
-            //app.UseMvc();
+        {            
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseHttpsRedirection();
 
@@ -82,6 +73,7 @@ namespace InfoSellers.Web
             {
                 endpoints.MapControllers();
             });
+            
         }
     }
 }
