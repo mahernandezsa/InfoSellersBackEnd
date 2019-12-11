@@ -44,7 +44,7 @@ namespace InfoSellers.Model.Repository
 
         public IQueryable<BikeSeller> GetAll()
         {
-            var bikeSeller = _context.BikeSeller.Include(r => r.Role).AsNoTracking();
+            var bikeSeller = _context.BikeSeller.Include(r => r.Role);
             return bikeSeller;
         }
 

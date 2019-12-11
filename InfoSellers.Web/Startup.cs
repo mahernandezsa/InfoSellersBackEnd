@@ -1,6 +1,7 @@
 ﻿using InfoSellers.Model.Entities;
 using InfoSellers.Model.Repository;
 using InfoSellers.Model.Services;
+using InfoSellers.Web.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,8 @@ namespace InfoSellers.Web
                 opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
 
+
+
             services.AddScoped<IDataRepository<BikeSeller, int>, BikeSellerDataRepository>();
             services.AddScoped<IBusinessService<BikeSeller, int>, BikeSellerBusinessService>();
 
@@ -54,11 +57,16 @@ namespace InfoSellers.Web
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {            
+        {
 
             if (env.IsDevelopment())
-            {
+            {                
                 app.UseDeveloperExceptionPage();
+                app.UseHttpResponseExceptionMiddleware();
+            }
+            else {
+                app.UseHttpResponseExceptionMiddleware();
+                app.UseExceptionHandler();
             }
 
             app.UseCors(MyAllowSpecificOrigins);

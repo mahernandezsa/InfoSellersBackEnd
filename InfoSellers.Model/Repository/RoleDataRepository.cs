@@ -44,7 +44,7 @@ namespace InfoSellers.Model.Repository
 
         public IQueryable<Role> GetAll()
         {
-            var roles = _context.Role.ToList().AsQueryable().AsNoTracking();
+            var roles = _context.Role.ToList().AsQueryable();
             return roles;
         }
 

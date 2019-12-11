@@ -43,11 +43,7 @@ namespace InfoSellers.Web.Controllers
         // PUT: api/BikeSeller/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBikeSeller(int id, BikeSeller bikeSeller)
-        {
-            if (id != bikeSeller.Id || bikeSeller.Role.Id != bikeSeller.RoleId)
-            {
-                return BadRequest();
-            }
+        {            
             var res = await _bikeSellerBusinessService.Update(id, bikeSeller);
 
             return NoContent();
@@ -59,7 +55,7 @@ namespace InfoSellers.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
             await _bikeSellerBusinessService.Add(bikeSeller);

@@ -1,4 +1,5 @@
 ﻿using InfoSellers.Model.Entities;
+using InfoSellers.Model.Exceptions;
 using InfoSellers.Model.Repository;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,14 @@ namespace InfoSellers.Model.Services
 
         public IEnumerable<Role> GetAll()
         {
-            return _dataRepository.GetAll();
+            try
+            {
+                return _dataRepository.GetAll();
+            }
+            catch (Exception ex)
+            {
+                throw new HttpResponseException(500, @"Internal error: " + ex.Message);
+            }
         }
 
         public async Task<long> Update(int id, Role role)
